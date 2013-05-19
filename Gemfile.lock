@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    puppetry (0.0.1)
+      thor
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.0.1)
+    thor (0.18.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  puppetry!
