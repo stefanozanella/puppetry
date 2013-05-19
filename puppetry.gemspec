@@ -17,7 +17,8 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files  = ["README.md"]
   s.rdoc_options      = ["--charset=UTF-8"]
 
-  s.add_dependency "thor"
+  s.add_runtime_dependency "thor"
+  s.add_runtime_dependency "grit"
 
   s.description = %s{
     Puppetry is a command line tool that aims at easing and uniforming

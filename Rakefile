@@ -6,6 +6,6 @@ namespace :test do
     t.libs << "lib"
     t.libs << "test"
     t.test_files = FileList["test/end_to_end/**/*_test.rb"]
-    t.ruby_opts = ["-w"]
+    #t.ruby_opts = ["-w"]
   end
 end

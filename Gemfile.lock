@@ -2,12 +2,20 @@ PATH
   remote: .
   specs:
     puppetry (0.0.1)
+      grit
       thor
 
 GEM
   remote: https://rubygems.org/
   specs:
+    diff-lcs (1.2.4)
+    grit (2.5.0)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+      posix-spawn (~> 0.3.6)
+    mime-types (1.23)
     minitest (5.0.1)
+    posix-spawn (0.3.6)
     thor (0.18.1)
 
 PLATFORMS
