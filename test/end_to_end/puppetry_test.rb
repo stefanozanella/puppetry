@@ -36,5 +36,15 @@ describe "puppetry" do
         end
       end
     end
+
+    it "runs bundler to install deps after folder initialization" do
+      Dir.mktmpdir do |dir|
+        FileUtils.cd(dir) do
+          Puppetry::CLI.start(["new", "test_module_setup"])
+
+          assert Dir.entries("test_module_setup").must_include ".bundle"
+        end
+      end
+    end
   end
 end

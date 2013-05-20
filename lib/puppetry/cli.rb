@@ -15,7 +15,12 @@ module Puppetry
       Grit::Git.new(name).clone({}, "git://github.com/stefanozanella/puppet-skeleton", name)
       # This looks rather rough, but maybe it's the simplest way to erase all
       # git history from the folder?
-      FileUtils.rm_rf File.expand_path('.git', name)
+      FileUtils.cd name do
+        FileUtils.rm_rf File.expand_path('.git', '.')
+        Bundler.with_clean_env do
+          system "bundle install --path vendor/bundle"
+        end
+      end
     end
   end
 end
