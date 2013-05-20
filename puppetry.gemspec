@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "thor"
   s.add_runtime_dependency "grit"
 
+  s.add_development_dependency "minitest"
+
   s.description = %s{
     Puppetry is a command line tool that aims at easing and uniforming
     development of Puppet modules, by performing common tasks such as setting
