@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'puppetry'
+require 'puppetry/cli'
 
 Puppetry::CLI.start(ARGV)

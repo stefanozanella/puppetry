@@ -1,6 +1,7 @@
 require 'thor'
 require 'grit'
 require 'fileutils'
+require 'puppetry/version'
 
 module Puppetry
   class CLI < Thor
