@@ -2,7 +2,7 @@ $:.unshift 'lib'
 require 'puppetry/version'
 
 Gem::Specification.new do |s|
-  s.name              = "puppetry"
+  s.name              = "puppetry_toolbox"
   s.version           = Puppetry::Version
   s.summary           = "Puppetry is a CLI tool to aid Puppet modules development."
   s.homepage          = "https://github.com/stefanozanella/puppetry"
