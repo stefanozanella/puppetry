@@ -1,6 +1,7 @@
 # Puppetry
 
 ## Project Status
+[![Gem Version](https://badge.fury.io/rb/puppetry_toolbox.png)](http://badge.fury.io/rb/puppetry_toolbox)
 [![Code Climate](https://codeclimate.com/github/stefanozanella/puppetry.png)](https://codeclimate.com/github/stefanozanella/puppetry)
 ## Installation
 Puppetry is currently shipped as a gem, so you just need to install it with:
