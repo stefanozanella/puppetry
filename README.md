@@ -3,7 +3,7 @@
 ## Installation
 Puppetry is currently shipped as a gem, so you just need to install it with:
 ~~~
-gem install puppetry_toolbox
+$ gem install puppetry_toolbox
 ~~~
 or, if you're using Bundler, set the following dependency line in your
 `Gemfile`:
