@@ -1,10 +1,19 @@
+---
 language: ruby
 
 rvm:
-  - "1.9.3"
-  - "2.0.0"
+  - 1.9.3
+  - 2.0.0
 
-install: 'bundle install --path vendor/bundle'
+install: bundle install --path vendor/bundle
 
-script: 'bundle exec rake test:end_to_end'
+script:
+  - bundle exec rake test:end_to_end
+  - bundle exec rake ci:release
 
+env:
+  global:
+  - secure: |-
+      hqv8xbhavi/hJmU0iGJ86skmPy53UwUd04YHDeqNxSrSvngaPiPtXf/oXWM3
+      JBRl1lJr62MVOL4SJWm0DIW8Xp8d7s7nvu6Ib1CThGlpH6MCS8giTAhILkPm
+      FK6Bjh/a7jcFHjM0zuh8reev1BKtonmUhjkVfuW4QfXjc1465ls=
