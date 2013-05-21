@@ -18,13 +18,14 @@ end
 namespace :ci do
   desc "Release a new gem version only if tag for current version doesn't exist yet"
   task :release do
-    key = ENV['RUBYGEMS_API_KEY'] and setup_rubygems_credentials key
-    Rake::Task["gem:release"].invoke if tag_exists_matching Puppetry::Version
-    restore_rubygems_credentials if key
+    if no_tag_exists_for Puppetry::Version
+      key = ENV['RUBYGEMS_API_KEY'] and setup_rubygems_credentials key
+      Rake::Task["gem:release"].invoke 
+      restore_rubygems_credentials if key
   end
 end
 
-def tag_exists_matching(version)
+def no_tag_exists_for(version)
   `git tag`.split.grep(%r{v#{version}}).empty?
 end
 
@@ -40,7 +41,7 @@ end
 
 def restore_rubygems_credentials
   FileUtils.rm cred_file
-  FileUtils.mv "#{cred_file}.org", cred_file
+  FileUtils.mv "#{cred_file}.org", cred_file if File.exists? "#{cred_file}.org"
 end
 
 def gem_dir
