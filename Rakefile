@@ -22,6 +22,7 @@ namespace :ci do
       key = ENV['RUBYGEMS_API_KEY'] and setup_rubygems_credentials key
       Rake::Task["gem:release"].invoke 
       restore_rubygems_credentials if key
+    end
   end
 end
 
