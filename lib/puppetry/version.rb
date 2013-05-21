@@ -1,3 +1,3 @@
 module Puppetry
-  Version = VERSION = '0.0.2'.freeze
+  Version = VERSION = '0.0.3'.freeze
 end
