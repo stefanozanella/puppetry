@@ -13,11 +13,12 @@ module Puppetry
 
     desc "new NAME", "Create a new module called NAME"
     def new(name)
-      Grit::Git.new(name).clone({}, "git://github.com/stefanozanella/puppet-skeleton", name)
-      # This looks rather rough, but maybe it's the simplest way to erase all
-      # git history from the folder?
+      repo = Grit::Repo.init(name)
+      repo.remote_add 'skeleton', 'https://github.com/stefanozanella/puppet-skeleton'
       FileUtils.cd name do
-        FileUtils.rm_rf File.expand_path('.git', '.')
+        # No support for push/pull in Grit?
+        `git pull skeleton master`
+
         Bundler.with_clean_env do
           system "bundle install --path vendor/bundle"
         end

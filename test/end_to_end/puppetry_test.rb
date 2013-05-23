@@ -38,7 +38,8 @@ describe "puppetry" do
 
     it "creates a new module starting from a scaffolded one" do
       module_dir.must_contain_a_puppet_module
-      module_dir.wont_be_a_git_repository
+      module_dir.must_be_a_git_repository
+      module_dir.must_track_remote "skeleton"
       assert_bundler_is_initialized_in  module_dir
     end
   end

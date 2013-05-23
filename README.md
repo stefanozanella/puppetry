@@ -36,9 +36,13 @@ This will generate a `my_nice_module` subdirectory in the current working
 directory. This directory will contain everything you need to start developing
 your new module.
 
-### Adding a new test
+In particular, created directory will be a Git repository tracking a remote
+named `skeleton` that points to the skeleton module used to scaffold the newly
+created one. So, it's possible to update the current scaffolding configuration
+by simply issuing:
 ```
-$ puppetry test new_class
-$ puppetry test -c new_class
-$ puppetry test --class new_class
+git pull skeleton master
 ```
+
+**NOTE**: This could lead to conflicts if you modify any of the files tracked
+by the skeleton module. Normal git housekeeping apply here though.
