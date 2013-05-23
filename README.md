@@ -7,14 +7,14 @@
 [![Coverage Status](https://coveralls.io/repos/stefanozanella/puppetry/badge.png?branch=master)](https://coveralls.io/r/stefanozanella/puppetry?branch=master)
 ## Installation
 Puppetry is currently shipped as a gem, so you just need to install it with:
-~~~
+```
 $ gem install puppetry_toolbox
-~~~
+```
 or, if you're using Bundler, set the following dependency line in your
 `Gemfile`:
-~~~
+```
 gem 'puppetry_toolbox'
-~~~
+```
 
 ## Usage
 Puppetry can help you with the development of a Puppet module in many ways.
@@ -29,9 +29,16 @@ Since this is almost all repeatable stuff, Puppetry ships with a command to
 generate the scaffolding for a new module.
 
 Let's pretend you want to start working on the `my_nice_module` module; then you just need to:
-~~~
+```
 puppetry new my_nice_module
-~~~
+```
 This will generate a `my_nice_module` subdirectory in the current working
 directory. This directory will contain everything you need to start developing
 your new module.
+
+### Adding a new test
+```
+$ puppetry test new_class
+$ puppetry test -c new_class
+$ puppetry test --class new_class
+```
