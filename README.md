@@ -45,4 +45,4 @@ git pull skeleton master
 ```
 
 **NOTE**: This could lead to conflicts if you modify any of the files tracked
-by the skeleton module. Normal git housekeeping apply here though.
+by the skeleton module. Normal git housekeeping applies here though.
