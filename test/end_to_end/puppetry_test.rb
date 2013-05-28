@@ -28,18 +28,16 @@ describe "puppetry" do
     before do
       @old_pwd = FileUtils.pwd
       FileUtils.cd(working_dir)
-
-      cli.new module_dir
     end
 
     after do
       FileUtils.cd @old_pwd
     end
 
-    it "creates a new module starting from a scaffolded one" do
+    it "creates a new Puppet module" do
+      cli.new module_dir
+
       module_dir.must_contain_a_puppet_module
-      module_dir.must_be_a_git_repository
-      module_dir.must_track_remote "skeleton"
       assert_bundler_is_initialized_in  module_dir
       assert_rspec_puppet_is_initialized_in module_dir
     end

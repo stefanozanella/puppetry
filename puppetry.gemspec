@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.rdoc_options      = ["--charset=UTF-8"]
 
   s.add_runtime_dependency "thor"
-  s.add_runtime_dependency "grit"
+  s.add_runtime_dependency "systemu"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "minitest"

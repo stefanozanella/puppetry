@@ -1,8 +1,8 @@
 require 'thor'
-require 'grit'
 require 'fileutils'
 require 'puppetry/version'
 require 'bundler'
+require 'systemu'
 
 module Puppetry
   class CLI < Thor
@@ -21,18 +21,39 @@ module Puppetry
       > puppetry new apache
       > puppetry new ~/code/puppet/apache
     EOS
-    def new(name)
-      repo = Grit::Repo.init(name)
-      repo.remote_add 'skeleton', 'https://github.com/stefanozanella/puppet-skeleton'
-      FileUtils.cd name do
-        # No support for push/pull in Grit?
-        `git pull skeleton master`
+    def new(destination)
+      FileUtils.mkdir destination
+      module_folders.each do |dir|
+        FileUtils.mkdir File.join(destination, dir)
+      end
 
+      File.open(File.join(destination, 'Gemfile'), 'w') do |gemfile|
+        gemfile.write <<-EOF
+          source "https://rubygems.org"
+
+          gem "puppet"
+          gem "rspec-puppet"
+          gem "puppetlabs_spec_helper"
+          gem "puppet-lint"
+        EOF
+      end
+
+      FileUtils.cd destination do
         Bundler.with_clean_env do
-          system "bundle install --path vendor/bundle"
+          systemu "bundle install --path vendor/bundle", 'stdout' => output
         end
 
-        spec_module_dir = File.join("spec", "fixtures", "modules", File.basename(name))
+        FileUtils.mkdir_p rspec_puppet_folders
+
+        File.open(File.join("spec", "spec_helper.rb"), 'w') do |spec_helper|
+          spec_helper.write <<-EOF
+            require 'puppetlabs_spec_helper/module_spec_helper'
+          EOF
+        end
+
+        FileUtils.touch(File.absolute_path(File.join("spec", "fixtures", "manifests", "site.pp")))
+
+        spec_module_dir = File.join("spec", "fixtures", "modules", File.basename(destination))
         FileUtils.mkdir spec_module_dir
         FileUtils.cd spec_module_dir do
           ["manifests", "lib", "templates", "files"].each do |dir|
@@ -57,6 +78,23 @@ module Puppetry
 
       def output
         @output || $stdout
+      end
+
+      def module_folders
+        %w{manifests lib files templates tests}
+      end
+
+      def rspec_puppet_folders
+        %w{ spec
+            spec/classes
+            spec/defines
+            spec/functions
+            spec/fixtures
+            spec/fixtures/modules
+            spec/fixtures/manifests
+            spec/hosts
+            spec/unit
+          }
       end
     end
   end
